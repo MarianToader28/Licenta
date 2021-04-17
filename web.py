@@ -41,5 +41,6 @@ def getRecentHums():
     return render_template("humidity.html", labels_hum=labels_hum, values_hum=values_hum)
 
 if __name__ == '__main__':
-   app.run(debug=True,host = '192.168.0.104')
+   #app.run(debug=True,host = '192.168.0.104')
+   app.run(debug=False,host = '0.0.0.0')
    
