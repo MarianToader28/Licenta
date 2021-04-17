@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="refresh" content="30">
+    <link rel="stylesheet" href='../static/mystyle.css' />
+    <title>Humidity</title>
+</head>
+
+<body>
+    <h1>Humidity</h1>
+
+    <div class="sidenav">
+        <a href="/">Main Page</a>
+        <a href="/temp">Temperature</a>
+        <a href="/hum">Humidity</a>
+        <a href="#">Gas</a>
+      </div>
+      <div class="main">
+<canvas id="Humidity_Chart" width="800" height="400"></canvas>
+<input type="button" value="Refresh" onclick="updateChart()">
+
+
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        var ctx = document.getElementById("Humidity_Chart").getContext('2d');
+        var HumChart = new Chart(ctx, {
+            type: "line",
+            data: {
+
+                labels: {{ labels_hum | safe }},
+                datasets: [
+
+            {
+                label: "Humidity (%) ",
+                data: {{ values_hum | safe }},
+                fill: false,
+                borderColor: "rgb(91,150,241)",
+                lineTension: 0.1
+                            }
+
+
+        ]
+
+                },
+        options: {
+            responsive: false //with and height from canvas
+        }
+    });
+
+    
+    </script>
+</div>
+
+</body>
+
+</html>

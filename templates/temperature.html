@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewpoint" content="width=device-width, intitial-scale=1.0">
+    <link rel="stylesheet" href='../static/mystyle.css' />
+    <title>Ambient Monitoring System</title>
+</head>
+
+<body>
+    <h1>Temperature</h1>
+    <div class="sidenav">
+        <a href="/">Main Page</a>
+        <a href="/temp">Temperature</a>
+        <a href="/hum">Humidity</a>
+        <a href="#">Gas</a>
+      </div>
+      <div class="main">
+        <div>
+        <canvas id="Temperature_Chart" width="800" height="400"></canvas>
+        </div>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js></script>
+    <script>
+        
+        var ctx = document.getElementById("Temperature_Chart").getContext('2d');
+        var TempChart = new Chart(ctx, {
+            type: "line",
+            data: {
+
+                labels: {{ labels | safe }},
+        datasets: [
+
+            {
+                label: "Temperature (°C) ",
+                data: {{ values | safe }},
+                fill: false,
+                borderColor: "rgb(91,150,241)",
+                backgroundColor: "rgba(91,150,241,0.5)",
+                lineTension: 0.1
+            }
+
+
+        ]
+
+                },
+
+        options: {
+            responsive: false //with and height from canvas
+        }
+    });
+
+    
+
+    </script>
+</div>
+
+
+
+</body>
+
+</html>

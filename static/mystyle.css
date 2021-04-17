@@ -1,0 +1,67 @@
+
+h1 {
+
+    background-color: rgb(61, 58, 58);
+    padding: 30px 30px 30px 0px;
+    text-align: center;
+    font-size: 35px;
+    color: rgb(123, 171, 224);
+  }
+
+
+h2 {
+    
+    text-align:left;
+    font-family: Verdana, Tahoma, sans-serif;
+    color: rgb(44, 40, 40);
+    padding-left: 30px;
+    padding-top: 60px;
+
+}
+
+body {
+
+    background-color: rgba(187, 186, 186, 0.726);
+    /*rgb(166, 169, 173); **/
+
+}
+
+ .sidenav {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    z-index: 1;
+    top: 125px;/*23px; */
+    left: 8px;
+    background-color: rgb(54, 54, 54);
+    overflow-x: hidden;
+    padding-top: 20px; 
+    
+    
+  
+  }
+ 
+  .sidenav a {
+    padding: 6px 6px 6px 15px; 
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+  
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+  }
+
+
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
