@@ -1,6 +1,6 @@
 Adafruit-Blinka==6.4.2
 adafruit-circuitpython-dht==3.6.0
--e ./home/pi/Adafruit_CircuitPython_DHT
+./home/pi/Adafruit_CircuitPython_DHT
 Adafruit-PlatformDetect==3.5.0
 Adafruit-PureIO==1.1.8
 click==7.1.2
