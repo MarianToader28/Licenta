@@ -2,7 +2,7 @@ import sqlite3
 from flask import Flask, render_template
 
 app = Flask(__name__)
-conn = sqlite3.connect('Measurements.db',check_same_thread=False)
+conn = sqlite3.connect('/var/www/html/FlaskWeb/Measurements.db',check_same_thread=False)
 crs = conn.cursor()
 
 def getLastData():
@@ -39,8 +39,9 @@ def getRecentHums():
     values_hum = [row[1] for row in reversed(data1)]
 
     return render_template("humidity.html", labels_hum=labels_hum, values_hum=values_hum)
+    
 
-if __name__ == '__main__':
-   #app.run(debug=True,host = '192.168.0.104')
-   app.run(debug=False,host = '0.0.0.0')
+#if __name__ == '__main__':
+ #  app.run(debug=True,host = '192.168.0.104')
+   #app.run(debug=False,host = '0.0.0.0')
    
