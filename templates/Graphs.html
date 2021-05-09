@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewpoint" content="width=device-width, intitial-scale=1.0">
+    <link rel="stylesheet" href='../static/mystyle.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <title>Ambient Monitoring System</title>
+</head>
+
+<body>
+    <h1>Graphs</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Welcome</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+          <span class="navbar-toggler-icon"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/graph">Graphs</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container" ><!--style="width: 100%;  height: 80vh" -->
+            <canvas id="Temperature_Chart" width="800" height="400"></canvas> 
+        <!--     <canvas id="Temperature_Chart"></canvas>-->
+     </div>
+     <br>
+        <div class="container" ><!--style="width: 100%; height: 80vh" -->
+            
+           <canvas id="Humidity_Chart" width="800" height="400"></canvas> 
+        <!--    <canvas id="Humidity_Chart"></canvas>-->
+        </div>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js></script>
+    <script>
+        
+        var ctx = document.getElementById("Temperature_Chart").getContext('2d');
+        var TempChart = new Chart(ctx, {
+            type: "line",
+            data: {
+
+                labels: {{ labels | safe }},
+        datasets: [
+
+            {
+                label: "Temperature (°C) ",
+                data: {{ values | safe }},
+                fill: false,
+                borderColor: "rgb(91,150,241)",
+                backgroundColor: "rgba(91,150,241,0.5)",
+                lineTension: 0.1
+            }
+
+
+        ]
+
+                },
+
+        options: {
+            responsive: true, //with and height from canvas
+            maintainApectRatio: false
+        }
+    });
+
+    </script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    
+    <script>
+        var ctx = document.getElementById("Humidity_Chart").getContext('2d');
+        var HumChart = new Chart(ctx, {
+            type: "line",
+            data: {
+
+                labels: {{ labels_hum | safe }},
+                datasets: [
+
+            {
+                label: "Humidity (%) ",
+                data: {{ values_hum | safe }},
+                fill: false,
+                borderColor: "rgb(91,150,241)",
+                lineTension: 0.1
+            }
+
+
+        ]
+
+                },
+        options: {
+            responsive: true, //with and height from canvas
+            maintainApectRatio: false
+        }
+    });
+
+    
+    
+    </script>
+    
+
+
+</body>
+
+</html>

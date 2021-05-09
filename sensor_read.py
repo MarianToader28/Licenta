@@ -6,14 +6,14 @@ import twilio
 from twilio.rest import Client
 
 account_sid = 'ACf5491c0885b17c1d480e27b6d6976e1b'
-auth_token = '516ef76f7e79eb532899e6009b51928a'
+auth_token = '47e52d94dca7b7f749b213a4708e5bb1'
 client = Client(account_sid, auth_token)
 
 def getData():
 
     sensor = Adafruit_DHT.DHT22
     pin = 17
-    reading_time = datetime.datetime.now()
+    reading_time = datetime.datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin) # temperature, humidty read from sensor
     if temperature is not None and humidity is not None: #it only print valid readings
         print("{}: Temperature is: {:.2f} °C, Humidity is: {:.2f} ".format(reading_time,temperature, humidity))

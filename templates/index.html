@@ -3,25 +3,50 @@
 
 <head>
     <meta name="viewpoint" content="width=device-width, intitial-scale=1.0">
-    <link rel="stylesheet" href='../static/mystyle.css' />
+    <link rel="stylesheet" href='../static/mystyle.css' /> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
     <title>Ambient Monitoring System</title>
 </head>
 
-<body></body>
+<body>
     <h1>Ambient Monitoring System</h1>
-   <div class="sidenav">
-        <a href="/">Main Page</a>
-        <a href="/temp">Temperature</a>
-        <a href="/hum">Humidity</a>
-        <a href="#">Gas</a>
-      </div>
-      <div class="main"> 
+ 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand">Welcome</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"> <!-- aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> -->
+      <span class="navbar-toggler-icon"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/graph">Graphs</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+                
+                <h2><img src="../static/images/clock.png"> Last status at: {{read_time}} </h2>
+                
+                <h2><img src="../static/images/temp.png"> Temperature is: {{temp}} °C</h2>
+                
+                <h2><img src="../static/images/hum.png"> Humidity is: {{hum}} %</h2>
+               
+                <h2><img src="../static/images/CO.png"> Carbon Monoxide: </h2>
+
     
-                <h2>Temperature is: {{temp}} °C</h2>
-                <h2>Humidity is: {{hum}} %</h2>
-                <h2>Gas: </h2>
-
-
 </body>
 
 </html>
+
+
