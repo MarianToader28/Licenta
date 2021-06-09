@@ -9,7 +9,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <title>Ambient Monitoring System</title>
 </head>
 
@@ -34,16 +36,30 @@
           </ul>
         </div>
       </nav>
-      <div class="container" ><!--style="width: 100%;  height: 80vh" -->
+
+
+    <!-- <div class="col-md-2">
+          <input type="text" name="From" id="From" class="form-control" placeholder="From Date"/>
+      </div>
+     <div class="col-md-8">
+        <input type="button" name="range" id="range" value="Range" class="btn btn-succes" />
+     </div>
+    -->
+      <div id="mychart" class="container" >
             <canvas id="Temperature_Chart" width="800" height="400"></canvas> 
-        <!--     <canvas id="Temperature_Chart"></canvas>-->
      </div>
      <br>
-        <div class="container" ><!--style="width: 100%; height: 80vh" -->
+        <div class="container" >
             
            <canvas id="Humidity_Chart" width="800" height="400"></canvas> 
-        <!--    <canvas id="Humidity_Chart"></canvas>-->
         </div>
+    <br>
+    <div class="container" >
+            
+        <canvas id="CO_Chart" width="800" height="400"></canvas> 
+     
+     </div>
+    
     <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js></script>
     <script>
         
@@ -78,7 +94,7 @@
     </script>
     <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         var ctx = document.getElementById("Humidity_Chart").getContext('2d');
         var HumChart = new Chart(ctx, {
@@ -106,6 +122,70 @@
         }
     });
 
+    </script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        var ctx = document.getElementById("CO_Chart").getContext('2d');
+        var COChart = new Chart(ctx, {
+            type: "line",
+            data: {
+
+                labels: {{ labels_CO | safe }},
+                datasets: [
+
+            {
+                label: "CO (ppm) ",
+                data: {{ values_CO | safe }},
+                fill: false,
+                borderColor: "rgb(91,150,241)",
+                lineTension: 0.1
+            }
+
+
+        ]
+
+                },
+        options: {
+            responsive: true, //with and height from canvas
+            maintainApectRatio: false
+        }
+    });
+
+
+    $(document).ready(function(){
+        $.datepicker.setDefaults({
+            dateFormat: "yy/mm/dd"
+        });
+
+        $('#From').datepicker();
+     
+
+        $('#range').click(function(){
+            var From = $('#From').val();
+            if(From != '') 
+            {
+                $.ajax({
+                    url: '/range',
+                    method: 'POST',
+                    data:{From:From},
+                    success:function(data)
+                        {
+                            $('#mychart').html(data);
+                            $('#mychart').append(data.htmlresponse)
+                        }
+
+                });
+            }
+            else 
+            {
+                alert("Please select the Date");
+            }
+
+        });
+
+    });
     
     
     </script>
