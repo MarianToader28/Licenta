@@ -2,11 +2,11 @@ import sqlite3
 from flask import Flask, render_template, jsonify, request, flash, redirect
 
 
-app = Flask(__name__)
-conn = sqlite3.connect('/var/www/html/FlaskWeb/Measurements.db',check_same_thread=False)
-crs = conn.cursor()
+app = Flask(__name__)   #declarare obiect de tip Flask
+conn = sqlite3.connect('/var/www/html/FlaskWeb/Measurements.db',check_same_thread=False)    #conectarea la baza de date
+crs = conn.cursor() #initializare cursor
 
-
+#functie de obtinere a ultimilor date
 def getLastData():
     for data in crs.execute('SELECT * FROM data ORDER BY date_time DESC LIMIT 1'):
         read_time = str(data[0])
@@ -16,6 +16,7 @@ def getLastData():
        
     return read_time,temp, hum, CO
 
+#afisarea ultimulor date pe pagina principala
 @app.route('/')
 def index():
 	read_time,temp, hum, CO = getLastData()
@@ -28,6 +29,7 @@ def index():
     
 	return render_template('index.html', **templateData)
 
+#obtinerea celor mai recente date
 @app.route("/graph")
 def getRecentMeasurements():
     crs.execute("SELECT date_time, temperature FROM data ORDER BY date_time DESC LIMIT 60")
@@ -45,13 +47,13 @@ def getRecentMeasurements():
 
     return render_template("Graphs.html",labels=labels, values=values,labels_hum=labels_hum, values_hum=values_hum, labels_CO=labels_CO, values_CO=values_CO)
 
-
+#aceasta functie nu este gata
 @app.route("/range",methods=["POST","GET"])
 def range():
     if request.method == "POST":
         From = request.form['From']
         print(From)
-        crs.execute("SELECT date_time, temperature from data WHERE date_time = '{}'".format(From))
+        crs.execute("SELECT date_time, temperature FROM data WHERE date_time = '{}' LIMIT 60".format(From))
         data3 = crs.fetchall()
         new_date = [row[0] for row in reversed(data3)]
         new_temp = [row[1] for row in reversed(data3)]
@@ -59,5 +61,5 @@ def range():
 
 #if __name__ == '__main__':
  #  app.run(debug=True,host = '192.168.0.104')
-   #app.run(debug=False,host = '0.0.0.0')
+   
    

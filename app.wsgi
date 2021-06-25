@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+#acest fisier face legatura intre site-ul Flask si serverul Apache2 
 import sys
 
 activate_venv = '/var/www/html/FlaskWeb/env/bin/activate_this.py'
