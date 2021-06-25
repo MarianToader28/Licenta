@@ -7,8 +7,8 @@ import twilio
 from twilio.rest import Client
 
 #credentialele folosite de serviciul Twilio pentru sms
-account_sid = 'obtinut din contul Twilio'
-auth_token = 'obtinut din contul Twilio'
+account_sid = 'ACf5491c0885b17c1d480e27b6d6976e1b'
+auth_token = '3be26e1eb98d9535427f39d6725eec61'
 
 client = Client(account_sid, auth_token)
 #pinii GPIO folositi la SPI
